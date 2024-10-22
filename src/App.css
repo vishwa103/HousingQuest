@@ -25,6 +25,100 @@ body{
   padding: 10px;
 }
 
+/* styles.css or your CSS-in-JS solution */
+.right-to-left-reveal {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin: 0;
+  width: 0; /* Start with width 0 to hide content initially */
+}
+
+.rlreveal-content {
+  display: inline-block;
+  position: relative;
+  /* Make sure the content has some padding or margin if needed */
+}
+
+.right-to-left-reveal.animate {
+  width: 100%; /* Expand to full width to reveal content */
+  animation: rightreveal 3s ease-out; /* Adjust timing as needed */
+}
+
+@keyframes rightreveal {
+  from {
+    width: 0; /* Start with width 0 to hide content */
+  }
+  to {
+    width: 100%; /* End with full width to reveal content */
+  }
+}
+
+
+/* styles.css or your CSS-in-JS solution */
+.left-to-right-reveal {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin: 0;
+  width: 0; /* Initially set width to 0 */
+}
+
+.reveal-content {
+  display: inline-block;
+  position: relative;
+}
+
+.left-to-right-reveal.animate {
+  width: auto; /* Change width to auto when animating */
+  animation: leftreveal 3s ease-out; /* Adjust timing as needed */
+}
+
+@keyframes leftreveal {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%; /* Ensure it reveals fully */
+  }
+}
+
+/* styles.css or your CSS-in-JS solution */
+.top-to-bottom-reveal {
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  height: 0; /* Initially set height to 0 */
+}
+
+.tbreveal-content {
+  display: block;
+  position: relative;
+}
+
+.top-to-bottom-reveal.tbanimate {
+  height: auto; /* Change height to auto when animating */
+  animation: topreveal 3s ease-out; /* Adjust timing as needed */
+}
+
+@keyframes topreveal {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%; /* Ensure it reveals fully */
+  }
+}
+
+.visible-reveal {
+  opacity: 0; /* Start with opacity 0 */
+  transition: opacity 3s ease-out; /* Smooth transition to opacity 1 */
+}
+
+.visible-reveal.vbanimate {
+  opacity: 1; /* End with opacity 1 when animated */
+}
+
 
 .button-primary {
   background: var(--white-color);
@@ -84,8 +178,8 @@ body{
   background: var(--transparent-background-color); /* Default color if --transparent-background-color is not set */
   color: white;
   padding: 10px 50px;
-  top: 10px; /* Stick to the top */
-  border-radius: 20px;
+  position: relative;
+  border-radius: 10px;
   width: 100%;
   z-index: 1000; /* Ensures the navbar stays above other content */
   position: fixed; /* Fixed positioning */
@@ -152,7 +246,7 @@ body{
   background: var(--black-lite-color);
   padding: 10px 25px;
   border-radius: 10px;
-  min-height: 250px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -186,7 +280,6 @@ body{
 
 .image-container {
   position: relative;
-  
   height: 100%; 
   border-radius: 20px;/* Ensure the container takes up the full viewport height */
 }
@@ -196,7 +289,7 @@ body{
   width: 100%;
   min-height: 650px;
   max-height: 650px;
-  border-radius: 20px;
+  border-radius: 10px;
   transition: opacity 1s ease-in-out; /* Smooth transition effect */
 }
 
@@ -207,12 +300,14 @@ body{
   transform: translate(-50%, -50%);
   width: 75%;
   color: var(--white-color);
+  overflow: hidden;
   text-align: center;
 }
 
 .hero-title {
   font-size: 48px;
   font-weight: 500;
+  height: 100%;
 }
 
 .hero-subtitle {
@@ -223,13 +318,13 @@ body{
 
 .hero-button-container {
   position: absolute;
+  overflow: hidden;
   bottom: 20px;
-  padding: 0 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
+  right: 20px;
+  padding: 0;
+  width: auto; /* Adjusts width to content */
 }
+
 
 .hero-button {
   background: var(--transparent-background-color);
@@ -523,12 +618,13 @@ body{
   max-height: 450px;
 }
 
-.discover-image-container{
+.discover-image-container {
   position: relative;
-  object-fit: cover ;
+  object-fit: cover;
   border-radius: 20px;
   height: 100%;
 }
+
 .discover-image-container::before {
   content: "";
   position: absolute;
@@ -536,12 +632,12 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2); /* Adjust the opacity to your preference */
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3); /* Adjust opacity as needed */
+  border-radius: 10px; /* Ensure radius matches the container */
   pointer-events: none; /* Ensures the pseudo-element doesn’t interfere with interactions */
 }
 
-.discover-button{
+.discover-button {
   background: var(--black-color);
   display: flex;
   justify-content: space-between;
@@ -552,8 +648,7 @@ body{
   color: var(--white-color);
 }
 
-
-.discover-image-content{
+.discover-image-content-main {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -564,7 +659,143 @@ body{
   width: 100%;
   border-radius: 8px;
   padding: 20px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
+.discover-image-content {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  color: var(--white-color);
+  font-size: 14px;
+  font-weight: 300;
+  transform: translateX(-50%);
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.discover-image-tailored-content{
+  padding: none;
+  background: none;
+  border-radius: none;
+  min-height: 0;
+  transition: 
+  opacity 0.3s ease, 
+  visibility 0.3s ease,
+  padding 0.3s ease,
+  background 0.3s ease,
+  border-radius 0.3s ease,
+  min-height 0.3s ease;
+}
+
+.tailored-image-container{
+  transition: opacity 3s ease, visibility 3s ease;
+}
+
+.tailored-image-container:hover .discover-image-content {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.discover-image-tailored-content-inside{
+  display: none;
+}
+
+.tailored-image-container:hover .discover-image-tailored-content-inside{
+  display: block;
+}
+
+.tailored-image-container:hover .discover-image-tailored-content{
+  padding: 20px;
+  background: var(--white-color);
+  min-height: 200px;
+  border-radius: 20px;
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.discover-image-content-top {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  color: var(--white-color);
+  font-size: 14px;
+  font-weight: 300;
+  transform: translateX(-50%);
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.discover-image-content-bottom {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  color: var(--white-color);
+  font-size: 14px;
+  font-weight: 300;
+  transform: translateX(0);
+  width: auto;
+  border-radius: 8px;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Hover effect */
+.discover-image-container:hover .discover-image-content-main {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.discover-image-container:hover .discover-image-content-top,
+.discover-image-container:hover .discover-image-content-bottom {
+  opacity: 1;
+  visibility: visible;
+}
+
+.discover-image-text-container{
+  background: var(--white-color);
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 10px;
+  color: var(--black-color);
+  font-weight: 400;
+}
+.discover-text-lite{
+  font-size: 10px;
+  color: #777777;
+}
+
+.discover-image-subtext{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.arrow-top {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 0px; /* Adjust as needed */
+  color: var(--white-color);
+  font-size: 14px;
+  font-weight: 300;
+  
+  transform: rotate(-15deg); /* Remove horizontal centering */
+  width: auto; /* Adjust width as needed */
+  border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+  /* Additional styling if necessary */
+}
+
+
 
 .discover-image-content-two{
   position: absolute;
@@ -698,6 +929,10 @@ body{
   .experience-description{
     font-size: 16px;
   }
+
+  .discover-image-text-container{
+    padding: 5px 10px;
+  }
 }
 
 
@@ -734,4 +969,65 @@ body{
   border-radius: 10px;
 }
 
+
+  /* CardStack.css */
+  .card-stack-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px; /* Optional: adds perspective for a 3D effect */
+  }
+
+  .card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    cursor: pointer;
+    border-radius: 20px;
+    transform-origin: center;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--white-color);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-description {
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  /* Active card styling */
+  .card.active {
+    transform: translateX(0); /* Slightly scale up and move to the front */
+    opacity: 1;
+    z-index: 2; /* Ensure the active card is on top */
+  }
+
+  /* Cards below active card */
+  .card:not(.active) {
+    transform: translateX(10px); /* Scale down and move down */
+    opacity: 0.7;
+    z-index: 1; /* Ensure below cards are underneath */
+  }
 

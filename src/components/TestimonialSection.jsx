@@ -5,24 +5,25 @@ import StarsIcon from '../assets/StarsIcon.png'
 import AboutusImageOne from "../assets/AboutusImageOne.png";
 import AboutusImageTwo from "../assets/AboutusImageTwo.png";
 import AboutusImageThree from "../assets/AboutusImageThree.png";
+import VisibleReveal from './VisibleReveal';
 
 const testimonials = [
     {
         image: AboutusImageOne,
-        title: "Corporate Gala",
-        description: `We hired this company to decorate our annual corporate gala, and they exceeded all expectations. The attention to detail was impeccable, and the decor perfectly reflected our brand's image. The event was a huge success, and our clients were thoroughly impressed. We look forward to working with them again for future events.`,
-        username: " Jane D",
+        title: "Exceptional Service for Our Dream Home",
+        description: `Working with HQRealestates was an exceptional experience from start to finish. Their team demonstrated an impressive level of professionalism and expertise, guiding us through every step of the buying process. The attention to detail and commitment to finding the perfect home for us made all the difference. We couldn’t be happier with our new home and are grateful for their support and dedication.`,
+        username: "Jane D",
     },
     {
         image: AboutusImageTwo,
-        title: "Princess Charm’s Birthday",
-        description: `I wanted my daughter's birthday party to be extra special, and they delivered beyond my wildest dreams! The themed decorations were vibrant and fun, and every little detail was taken care of. My daughter and her friends had an amazing time, and the memories we made that day will last a lifetime. I highly recommend their services for any special occasion!`,
-        username: " Emily R ",
+        title: "Seamless Transactions and Outstanding Results",
+        description: `I’ve had the pleasure of working with HQRealestates for both buying and selling properties, and each time, they exceeded my expectations. Their market knowledge and strategic approach helped me achieve the best possible outcome in a timely manner. The personalized service and clear communication throughout the transactions made the entire process seamless and stress-free. Highly recommend them to anyone in the real estate market.`,
+        username: "Emily R",
     },
     {
         image: AboutusImageThree,
-        title: "Mr & Mrs. Just Married",
-        description: `Our wedding day was nothing short of magical, thanks to the incredible team behind our decor. They listened to every detail of our vision and brought it to life in the most breathtaking way. From the floral arrangements to the reception setup, everything was perfect. Our guests couldn't stop raving about how beautiful everything looked. We can't thank them enough for making our day unforgettable!`,
+        title: "Innovative Marketing and Expert Advice",
+        description: `The team at HQRealestates truly went above and beyond in helping us sell our property. Their innovative marketing strategies and expert advice ensured that our home was presented in the best light possible. Their responsiveness and thorough understanding of the market helped us secure a great deal. We were impressed by their dedication and would not hesitate to work with them again in the future.`,
         username: "Sarah M",
     },
     // Add more testimonials here
@@ -52,6 +53,7 @@ const TestimonialSection = () => {
     };
 
     return (
+        <VisibleReveal>
         <div className='testimonial-section my-5'>
             <div className='aboutus-title mb-3'>
                 <img src={StarsIcon} alt='starsicon' />
@@ -106,6 +108,7 @@ const TestimonialSection = () => {
                 ))}
             </div>
         </div>
+        </VisibleReveal>
     );
 }
 

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import HeroImage from '../assets/HeroImage.png'
+
 import AboutusImageOne from '../assets/AboutusImageTwo.png'
 import AboutusImageThree from '../assets/AboutusImageThree.png'
 
 import { useLocation } from 'react-router-dom';
-
-import { GoDownload } from 'react-icons/go'
+import { motion } from 'framer-motion';
 import AboutSection from '../components/AboutSection'
 import ContactSection from '../components/ContactSection'
 import TestimonialSection from '../components/TestimonialSection'
 import ExploreSection from '../components/ExploreSection'
+import LeftToRightReveal from '../components/LeftToRightReveal';
+import RightToLeftReveal from '../components/RightToLeftReveal';
 
 const images = [HeroImage, AboutusImageOne, AboutusImageThree ]; // Array of images
 
@@ -48,34 +50,62 @@ const Home = () => {
       };
   }, []);
 
+  const variants = {
+    hidden: { x: '100%', opacity: 0 }, // Start off-screen to the right
+    visible: { x: 0, opacity: 1 },     // End at its original position
+  };
+
   return (
-    <div style={{marginTop:"-60px"}}>
+    <div style={{marginTop:"-65px"}}>
      <section id='home' className='hero-section'>
-            <div className='image-container'>
+            <div className='discover-image-container'>
                 <img src={images[currentIndex]} className={`hero-image ${fadeClass}`} alt='hero-image' />
-                <div className='hero-content'>
-                    <h1 className='hero-title'>
-                        Experience Dubai’s Finest Properties
-                        <br />
-                        A New Standard of Luxury Living
-                    </h1>
-                    <div className='hero-subtitle'>
-                        Luxury living with breathtaking views and prime locations.
-                    </div>
-                </div>
-                <div className='hero-button-container'>
-                    <button className='hero-button'>
-                        Download Catalog <GoDownload size={20} />
-                    </button>
-                    <button className='hero-explore-button'>
-                        <img src={images[currentIndex]} className='explore-button-image' alt='explore-button-image' />
-                        <div className='pe-2'>
-                            Explore All
-                            <br />
-                            Our Properties
-                        </div>
-                    </button>
-                </div>
+                
+                <div className="hero-content">
+      <motion.h1
+        className="hero-title"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        Experience Dubai’s Finest Properties
+        <br />
+        A New Standard of Luxury Living
+      </motion.h1>
+
+      <motion.div
+        className="hero-subtitle"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+      >
+        Luxury living with breathtaking views and prime locations.
+      </motion.div>
+    </div>
+    <div className="hero-button-container">
+    <motion.div
+      
+      initial="hidden"
+      animate="visible"
+      variants={variants}
+      transition={{ duration: 1 }} // Adjust duration as needed
+    >
+      {/* Uncomment and use this button if needed */}
+      {/* <button className='hero-button'>
+        Download Catalog <GoDownload size={20} />
+      </button> */}
+
+      <button className="hero-explore-button">
+        <img src={images[currentIndex]} className="explore-button-image" alt="explore-button" />
+        <div className="pe-2">
+          Explore All
+          <br />
+          Our Properties
+        </div>
+      </button>
+    </motion.div>
+    </div>
+                
             </div>
         </section>
         <section id='about'>
