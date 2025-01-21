@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './components/Footer';
 import Service from './pages/Service';
 
+
+//version-2
 function App() {
 
   return (
@@ -15,7 +17,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/service' element={<Service/>}/>
-
         </Routes>
         <Footer/>
       </HashRouter>
