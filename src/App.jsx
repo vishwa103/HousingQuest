@@ -1,27 +1,20 @@
 import './App.css'
-import { HashRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
-import Header from './components/Header'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './components/Footer';
-import Service from './pages/Service';
-
+import Home from './pages/Home/Home'
+import Footer from './components/Footer/Footer';
 
 //version-2
 function App() {
 
   return (
     <div className='global-style'>
-      <HashRouter>
-        <Header/>
+      <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/service' element={<Service/>}/>
         </Routes>
         <Footer/>
-      </HashRouter>
-      
-      
+      </BrowserRouter>
     </div>
   )
 }
